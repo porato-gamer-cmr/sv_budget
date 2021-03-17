@@ -1,0 +1,85 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-success" data-toggle="modal" data-target="#createproduitform">ajouter</button>
+      <hr>
+      <ul>
+          {% for produit in produits %}
+          <li> {{produit.name}} <i class="fa fa-info" data-toggle="modal" data-target="#editproduitform"></i></li>
+          {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+<!--Start add product Modal-->
+<div class="modal" id="createproduitform">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ajouter Produit</h5>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'save_product' %}" method="get">
+              <div class="row mb-1">
+                <div class="col col-4">Nom</div>
+                <div class="col"><input type="text" name="name" class="form-control border-secondary"></div>
+              </div>
+              <div class="row mb-1">
+                <div class="col col-4">Quantité</div>
+                <div class="col"><input type="number" name="quantite" class="form-control border-secondary"></div>
+              </div>
+              <div class="row mb-1">
+                <div class="col col-4">Seuil Sécurité</div>
+                <div class="col"><input type="number" name="securite" class="form-control border-secondary"></div>
+              </div>
+              <div class="row mb-1">
+                <div class="col col-4">Seuil Alerte</div>
+                <div class="col"><input type="number" name="alerte" class="form-control border-secondary"></div>
+              </div>
+              <br><br><button class="btn btn-primary" type="submit"><i class="fa fa-check"></i> OK</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+    <!--Start edit product Modal-->
+<div class="modal" id="editproduitform">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modifier Produit</h5>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'save_product' %}" method="get">
+              <div class="row mb-1">
+                <div class="col col-4">Nom</div>
+                <div class="col"><input type="text" name="name" class="form-control border-secondary"></div>
+              </div>
+              <div class="row mb-1">
+                <div class="col col-4">Quantité</div>
+                <div class="col"><input type="number" name="quantite" class="form-control border-secondary"></div>
+              </div>
+              <div class="row mb-1">
+                <div class="col col-4">Seuil Sécurité</div>
+                <div class="col"><input type="number" name="securite" class="form-control border-secondary"></div>
+              </div>
+              <div class="row mb-1">
+                <div class="col col-4">Seuil Alerte</div>
+                <div class="col"><input type="number" name="alerte" class="form-control border-secondary"></div>
+              </div>
+              <br><br><button class="btn btn-primary" type="submit"><i class="fa fa-check"></i> OK</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+{% endblock %}
+
