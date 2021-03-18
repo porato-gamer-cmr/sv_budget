@@ -37,3 +37,12 @@ def save_product(request):
     context = {'produits': produits}
     template = loader.get_template('produits.html')
     return HttpResponse(template.render(context, request=request))
+
+
+def detail(request, id_produit):
+    ids=int(id_produit)
+    produit=Produit.objects.get(pk=ids)
+    context={'produit':produit}
+    template = loader.get_template('detail.html')
+    return HttpResponse(template.render(context, request=request))
+    #return HttpResponse(produit)
