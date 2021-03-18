@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
 from .models import Produit
+from .forms import ProduitForm
 
 # Create your views here.
 
@@ -38,6 +39,22 @@ def save_product(request):
     template = loader.get_template('produits.html')
     return HttpResponse(template.render(context, request=request))
 
+
+def update_product(request, id_produit):
+    ids=int(id_produit)
+    produit = Produit.objects.get(pk=ids)
+    name=request.GET['name']
+    quantite=request.GET['quantite']
+    securite=request.GET['securite']
+    alerte=request.GET['alerte']
+    #Produit.objects.create( name=name, quantite=quantite, securite=securite, alerte=alerte)
+
+    forms=ProduitForm(request.GET, instance=produit)
+    forms.save()
+    produits = Produit.objects.all()
+    context = {'produits': produits}
+    template = loader.get_template('produits.html')
+    return HttpResponse(template.render(context, request=request))
 
 def detail(request, id_produit):
     ids=int(id_produit)

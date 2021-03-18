@@ -1,4 +1,28 @@
 {% extends 'dashboard.html' %}
 {% block content %}
-le produit est {{ produit.name }}{{ produit.quantite }}
+<div class="container">
+    <div class="row">
+        <div class="col col-6 mx-auto">
+            <form action="{% url 'update_product' id_produit=produit.id %}" method="get">
+      <div class="row mb-1">
+        <div class="col col-3">Nom</div>
+        <div class="col"><input type="text" name="name" value="{{ produit.name }}" class="form-control border-secondary"></div>
+      </div>
+      <div class="row mb-1">
+        <div class="col col-3">Quantité</div>
+        <div class="col"><input type="number" name="quantite" value="{{ produit.quantite }}" class="form-control border-secondary"></div>
+      </div>
+      <div class="row mb-1">
+        <div class="col col-3">Seuil Sécurité</div>
+        <div class="col"><input type="number" name="securite" value="{{ produit.securite }}" class="form-control border-secondary"></div>
+      </div>
+      <div class="row mb-1">
+        <div class="col col-3">Seuil Alerte</div>
+        <div class="col"><input type="number" name="alerte" value="{{ produit.alerte }}" class="form-control border-secondary"></div>
+      </div>
+      <br><br><button class="btn btn-primary" type="submit"><i class="fa fa-check"></i> OK</button>
+</form>
+        </div>
+    </div>
+</div>
 {% endblock %}
